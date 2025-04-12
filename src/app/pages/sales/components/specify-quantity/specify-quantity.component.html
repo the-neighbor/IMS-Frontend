@@ -1,0 +1,23 @@
+<p>specify-quantity works!</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>SKU</th>
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>Initial Stock</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of selectedItems; let i=index" >
+            <td>{{ product.sku }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.sellPrice }}</td>
+            <td>
+               <input type="number" [(ngModel)]="product.quantity" />
+            </td>
+        </tr>
+</table>
+<button class="btn btn-primary" (click)="onSubmit()">Next</button>

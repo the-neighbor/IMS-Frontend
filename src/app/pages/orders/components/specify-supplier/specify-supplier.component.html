@@ -1,0 +1,23 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Supplier ID</th>
+            <th>Supplier Name</th>
+            <th>Contact Info</th>
+            <th>Rating</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let supplier of suppliers; let i=index">
+            <td>{{ supplier.id }}</td>
+            <td>{{ supplier.name }}</td>
+            <td>{{ supplier.contactInfo }}</td>
+            <td>{{ supplier.rating }}</td>
+            <td>
+                <input type="radio" name="selectedSupplier" (click)="selectSupplier(supplier)" />
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button class="btn btn-primary" (click)="onSubmit()">Next</button>

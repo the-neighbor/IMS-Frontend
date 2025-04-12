@@ -1,0 +1,41 @@
+<p>inventory works!</p>
+@if (viewingAlerts) {
+    <app-view-alerts [alerts]="alerts" (viewInventory)="viewInventory()"></app-view-alerts>
+} @else {
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header" style="display:flex; justify-content:space-between">
+                <h3 class="card-title" style="display:inline">Inventory</h3>
+                @if(alerts.length > 0) {
+                <button class="btn btn-warning float-right" (click)="viewAlerts()" >View Alerts</button>
+                } @else {
+                <button class="btn btn-secondary float-right" [disabled]="true">No Alerts</button>
+                }
+                </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>SKU</th>
+                            <!-- <th>Product Name</th>
+                            <th>Description</th>
+                            <th>Price</th> -->
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of inventory" [routerLink]="['/products','view', product.sku]">
+                            <td>{{ product.sku }}</td>
+                            <!-- <td>{{ product.name }}</td>
+                            <td>{{ product.description }}</td>
+                            <td>{{ product.buyPrice | currency }}</td> -->
+                            <td>{{ product.quantity }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</div>
+</div>
+}

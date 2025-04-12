@@ -1,0 +1,31 @@
+<h2>Sales</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Creation Date</th>
+            <th>Status</th>
+            <th>Sale ID</th>
+            <th>Customer</th>
+            <th>Products</th>
+            <th>Total Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let sale of salesList; let i = index;">
+            <td>{{ sale.saleCreated | date }}</td>
+            <td>{{ sale.saleStatus }}</td>
+            <td>{{ sale.saleId }}</td>
+            <td>{{ sale.customerUsername }}</td>
+            <td>
+                <ul>
+                    @for (product of products(sale); track $index) {
+                    <li>
+                        {{ product?.name }} ({{ product?.quantity }})
+                    </li>
+                    }
+                </ul>
+            </td>
+            <td>{{ sale.totalPrice | currency }}</td>
+        </tr>
+    </tbody>
+</table>

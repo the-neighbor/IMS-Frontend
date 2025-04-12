@@ -1,0 +1,26 @@
+<h2>Sales</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Sale ID</th>
+            <th>Products</th>
+            <th>Total Price</th>
+            <th>Supplier</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let sale of salesList">
+            <td>{{ sale.saleId }}</td>
+            <td>
+                <ul>
+                    <li *ngFor="let product of sale.productList">
+                        {{ product.name }} ({{ product.quantity }})
+                    </li>
+                </ul>
+            </td>
+            <td>{{ sale.totalPrice | currency }}</td>
+            <td>{{ sale.supplier.name }}</td>
+        </tr>
+    </tbody>
+</table>
+<button [routerLink]='["/sales/place"]'>Place Sale</button>

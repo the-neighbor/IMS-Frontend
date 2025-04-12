@@ -1,0 +1,28 @@
+<form [formGroup]="productForm" class="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3 form-group">
+        <label for="sku" class="form-label">SKU</label>
+        <input type="number" id="sku" class="form-control" formControlName="sku" placeholder="Enter SKU">
+    </div>
+    <div class="mb-3 form-group">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" id="name" class="form-control" formControlName="name" placeholder="Enter Product Name">
+    </div>
+    <div class="mb-3 form-group">
+        <label for="description" class="form-label">Description</label>
+        <textarea id="description" class="form-control" formControlName="description" placeholder="Enter Product Description"></textarea>
+    </div>
+    <div class="mb-3 form-group">
+        <label for="initial_stock" class="form-label">Initial Stock</label>
+        <input type="number" id="initial_stock" class="form-control" formControlName="initial_stock" placeholder="Enter Initial Stock">
+    </div>
+
+    <div class="mb-3 form-group">
+        <label for="buyPrice" class="form-label">Buy Price</label>
+        <input type="number" id="buyPrice" class="form-control" formControlName="buyPrice" placeholder="Enter Buy Price">
+    </div>
+    <div class="mb-3 form-group">
+        <label for="sellPrice" class="form-label">Sell Price</label>
+        <input type="number" id="sellPrice" class="form-control" formControlName="sellPrice" placeholder="Enter Sell Price">
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="productForm.invalid">Submit</button>
+</form>

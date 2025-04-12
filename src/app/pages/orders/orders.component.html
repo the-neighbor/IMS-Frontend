@@ -1,0 +1,31 @@
+<h2>Orders</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Creation Date</th>
+            <th>Status</th>
+            <th>Order ID</th>
+            <th>Products</th>
+            <th>Total Price</th>
+            <th>Supplier</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of ordersList" [routerLink]="['/orders','view', order.orderId]">
+            <td>{{ order.orderCreated | date }}</td>
+            <td>{{ order.orderStatus }}</td>
+            <td>{{ order.orderId }}</td>
+            <td>
+                <ul>
+                    <li *ngFor="let product of order.productList">
+                        {{ product.name }} ({{ product.quantity }})
+                    </li>
+                </ul>
+            </td>
+            <td>{{ order.totalPrice | currency }}</td>
+            <td>{{ order.supplier.name }}</td>
+        </tr>
+    </tbody>
+</table>
+<button [routerLink]='["/orders/place"]'>Place Order</button>

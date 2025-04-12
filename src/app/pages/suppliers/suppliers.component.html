@@ -1,0 +1,25 @@
+<app-supplier-form></app-supplier-form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Supplier ID</th>
+            <th>Supplier Name</th>
+            <th>Contact Info</th>
+            <th>Rating</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let supplier of suppliers; let i=index" (click)="selectSupplier(i)">
+            <td>{{ supplier.id }}</td>
+            <td>{{ supplier.name }}</td>
+            <td>{{ supplier.contactInfo }}</td>
+            <td>{{ supplier.rating }}</td>
+            <td>
+                <button class="btn btn-primary" (click)="onUpdate(supplier.id)">Update</button>
+                <button class="btn btn-danger" (click)="onDelete(supplier.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

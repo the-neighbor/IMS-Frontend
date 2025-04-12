@@ -1,0 +1,32 @@
+<p>view-alerts works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header" style="display:flex; justify-content:space-between">
+                <h3 class="card-title" style="display:inline">Low Stock Alerts</h3>
+                <button class="btn btn-secondary float-right" (click)="onViewInventory()">View Inventory</button>
+                </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>SKU</th>
+                            <!-- <th>Product Name</th>
+                            <th>Description</th>
+                            <th>Price</th> -->
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of alerts" [routerLink]="['/products','view', product.sku]">
+                            <td>{{ product.sku }}</td>
+                            <!-- <td>{{ product.name }}</td>
+                            <td>{{ product.description }}</td>
+                            <td>{{ product.buyPrice | currency }}</td> -->
+                            <td>{{ product.quantity }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</div>

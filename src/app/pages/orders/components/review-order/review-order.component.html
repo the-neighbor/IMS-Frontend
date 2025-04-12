@@ -1,0 +1,29 @@
+<p>review-order works!</p>
+
+@if (finalOrder) {
+    <h3>Order Summary</h3>
+    <p>Supplier: {{ finalOrder.supplier.name }}</p>
+    <p>Products:</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>SKU</th>
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of finalOrder.productList">
+            <td>{{ product.sku }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.buyPrice }}</td>
+            <td>{{ product.quantity }}</td>
+        </tr>
+    </tbody>
+</table>
+    <p>Total Price: {{ finalOrder.totalPrice | currency }}</p>
+    <button (click)="placeOrder()">Place Order</button>
+}

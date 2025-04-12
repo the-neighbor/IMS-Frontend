@@ -1,0 +1,29 @@
+<p>review-sale works!</p>
+
+@if (finalSale) {
+    <h3>Sale Summary</h3>
+    <p>Customer: {{ finalSale.customerUsername }}</p>
+    <p>Products:</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>SKU</th>
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of finalSale.productList">
+            <td>{{ product.sku }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.sellPrice }}</td>
+            <td>{{ product.quantity }}</td>
+        </tr>
+    </tbody>
+</table>
+    <p>Total Price: {{ finalSale.totalPrice | currency }}</p>
+    <button (click)="placeSale()">Place Sale</button>
+}

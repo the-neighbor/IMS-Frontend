@@ -1,0 +1,21 @@
+<nav>
+   <button class="btn" routerLink="/">Home</button>
+    @if (loggedIn()) {
+       <button class="btn" (click)="logout()">Logout</button>
+    } @else {
+       <button class="btn" routerLink="/login">Login</button>
+       <button class="btn" routerLink="/register">Register</button>
+    }
+    <button class="btn" [disabled]="!loggedIn()" routerLink="/products">Products</button>
+   <button class="btn" [disabled]="!loggedIn()" routerLink="/suppliers">Suppliers</button>
+   <button class="btn" [disabled]="!loggedIn()" routerLink="/inventory">Inventory</button>
+   @if (isUser()) {
+      <button class="btn" [disabled]="!loggedIn()" routerLink="/purchase-orders">Orders</button>
+   } @else{
+   <button class="btn" [disabled]="!loggedIn()" routerLink="/orders">Orders</button>
+   <button class="btn" [disabled]="!loggedIn()" routerLink="/admin-sales">Sales</button>
+   }
+   @if (isAdmin() && !isSeeded()) {
+      <button class="btn btn-warning" (click)="seedData()" [disabled]="!loggedIn()">Add Seed Data</button>
+   }
+</nav>

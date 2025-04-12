@@ -1,0 +1,24 @@
+<p>choose-items works!</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>SKU</th>
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products; let i=index" >
+            <td>{{ product.product.sku }}</td>
+            <td>{{ product.product.name }}</td>
+            <td>{{ product.product.description }}</td>
+            <td>{{ product.product.buyPrice }}</td>
+            <td>
+                <input type="checkbox" [(ngModel)]="product.selected" />
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button class="btn btn-primary" (click)="onSubmit()">Next</button>
