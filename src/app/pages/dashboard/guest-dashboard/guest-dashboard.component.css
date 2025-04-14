@@ -1,0 +1,58 @@
+.boot-card {
+    width: 60rem;
+    height: 45rem;
+    margin:auto;
+    /* absolute center */
+    margin-top: 10rem;
+    position:relative;
+    background: var(--bs-primary-gradient);
+    transition: all 0.3s ease;
+}
+
+.boot-card:hover {
+    transform: scale(1.05);
+}
+
+.boot-card h1 {
+    font-size: 8rem;
+    color: var(--bs-body-bg);
+    position: relative;
+    text-align: center;
+    aspect-ratio: 1/1;
+    top: 73%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    font-weight: 700;
+}
+
+.boot-card-spinner {
+    aspect-ratio: 1/1;
+    position: absolute;
+    width: 20rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    font-weight: 700;
+    border-radius: 50%;
+    border: 2rem dotted var(--bs-body-bg);
+    animation : spin 32s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform:translate(-50%, -50%) rotate(0deg);
+        -webkit-transform: translate(-50%, -50%) rotate(0deg);
+        -moz-transform: translate(-50%, -50%) rotate(0deg);
+        -ms-transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+        -webkit-transform: translate(-50%, -50%) rotate(360deg);
+        -moz-transform: translate(-50%, -50%) rotate(360deg);
+        -ms-transform: translate(-50%, -50%) rotate(360deg);
+
+    }
+}

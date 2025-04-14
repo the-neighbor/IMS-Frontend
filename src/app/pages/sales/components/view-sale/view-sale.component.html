@@ -1,0 +1,37 @@
+<app-modal [hidden]="!showModal">
+    <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Purchase #{{sale.saleId}}</h1>
+        <button type="button" class="btn rounded-5-close" (click)="showModal=false"><app-icon icon="x" size="2rem" ></app-icon></button>
+    </div>
+    <div class="modal-body">
+        <h6>Line Items</h6>
+        <table class="table table-striped table-hover table-responsive">
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of sale.productList">
+                    <td>{{item.sku}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.quantity}}</td>
+                    <td>{{item.price | currency }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <h6>Total Price: {{sale.totalPrice | currency}}</h6>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn rounded-5 btn-secondary" (click)="showModal=false">Close</button>
+        @if (sale.saleStatus === 'PENDING') {
+            <button type="button" class="btn rounded-5 btn-danger" (click)="markAsCancelled(sale.saleId)">Cancel Order</button>
+        }
+        @if (sale.saleStatus === 'SHIPPED') {
+            <button type="button" class="btn rounded-5 btn-success" (click)="markAsCompleted(sale.saleId)" disabled>Order Completed</button>
+        }
+    </div>
+</app-modal>

@@ -1,0 +1,11 @@
+<div class="card rounded-5">
+    <img src="{{ product.imageUrl || 'https://placehold.co/500?text=IMS' }}" alt="Product Image" class="card-img-top rounded-5" />
+    <div class="card-header"> 
+        <h3 class="card-title">Product Details</h3>
+    </div>
+    <div class="card-body">
+        <p>SKU#: {{ product.sku }}</p>
+        <p>Product Name: {{ product.name }}</p>
+        <p>Product Description: {{ product.description }}</p>
+    </div>
+</div>

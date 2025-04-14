@@ -11,6 +11,9 @@ import { ResponseObject } from '../models/interfaces/responseObject';
   providedIn: 'root'
 })
 export class AuthService {
+  isEmailTaken(value: any) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private http:HttpClient) { }
   
@@ -23,7 +26,7 @@ export class AuthService {
     let decodedPayload = atob(payload);
     let payloadJSON = JSON.parse(decodedPayload);
     // console.log(payloadJSON);
-    return payloadJSON?.role == 'ADMIN';
+    return this.isLoggedIn() && payloadJSON?.role == 'ADMIN';
   }
   isUser(): boolean {
     let token = sessionStorage.getItem('token');
@@ -34,7 +37,18 @@ export class AuthService {
     let decodedPayload = atob(payload);
     let payloadJSON = JSON.parse(decodedPayload);
     // console.log(payloadJSON);
-    return payloadJSON?.role == 'USER';
+    return this.isLoggedIn() && payloadJSON?.role == 'USER';
+  }
+  isStaff(): boolean {
+    let token = sessionStorage.getItem('token');
+    if (token == null) {
+      return false;
+    }
+    let payload = token.split('.')[1];
+    let decodedPayload = atob(payload);
+    let payloadJSON = JSON.parse(decodedPayload);
+    // console.log(payloadJSON);
+    return this.isLoggedIn() && (payloadJSON?.role == 'STAFF' || payloadJSON?.role == 'ADMIN');
   }
   isLoggedIn(): boolean {
     return sessionStorage.getItem('token') !== null;
@@ -47,6 +61,17 @@ export class AuthService {
     return sessionStorage.getItem('token');
   }
 
+  TokenExpired(): boolean {
+    let token = sessionStorage.getItem('token');
+    if (token == null) {
+      return true;
+    }
+    let payload = token.split('.')[1];
+    let decodedPayload = atob(payload);
+    let payloadJSON = JSON.parse(decodedPayload);
+    return payloadJSON?.exp * 1000 < Date.now();
+  }
+
   getUsername(): string | null {
     let token = sessionStorage.getItem('token');
     if (token == null) {
@@ -56,6 +81,18 @@ export class AuthService {
     let decodedPayload = atob(payload);
     let payloadJSON = JSON.parse(decodedPayload);
     return payloadJSON?.sub;
+  }
+
+  getName(): string | null {
+    let token = sessionStorage.getItem('token');
+    if (token == null) {
+      return null;
+    }
+    let payload = token.split('.')[1];
+    let decodedPayload = atob(payload);
+    let payloadJSON = JSON.parse(decodedPayload);
+    console.log(payloadJSON); 
+    return payloadJSON?.name;
   }
 
   login(loginDTO: LoginDTO): Observable<AuthResponseDTO> {

@@ -1,12 +1,12 @@
 @if (phase===0) {
     <app-specify-supplier (supplierSelected)="onSupplierSelected($event)"></app-specify-supplier>
 } @else if (phase ===1) {
-    <button class="btn btn-secondary" (click)="back()">Back</button>
+    <button class="btn rounded-5 btn-secondary" (click)="back()">Back</button>
     <app-choose-items (productsSelected)="onProductsSelected($event)"></app-choose-items>
 } @else if (phase ===2) {
-    <button class="btn btn-secondary" (click)="back()">Back</button>
+    <button class="btn rounded-5 btn-secondary" (click)="back()">Back</button>
     <app-specify-quantity (quantitySelected)="onQuantitySelected($event)" [selectedItems]="selectedProducts" ></app-specify-quantity>
 } @else if (phase ===3) {
-    <button class="btn btn-secondary" (click)="back()">Back</button>
+    <button class="btn rounded-5 btn-secondary" (click)="back()">Back</button>
     <app-review-order [finalOrder]="finalOrder"></app-review-order>
 }

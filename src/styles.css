@@ -1,1 +1,448 @@
 /* You can add global styles to this file, and also import other style files */
+@import './themes.css';
+* {
+  /* transition: all 0.3s ease-in-out; */
+  transition: background 0.6s ease-in-out, background-color 0.6s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+}
+.bg-primary {
+  transition: background 0.6s ease-in-out;
+}
+.bg-primary:hover {
+  background: var(--bs-primary-gradient);
+}
+
+.form-group span {
+    color: var(--bs-danger);
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+.text-center {
+    text-align: center;
+  }
+
+.flex {
+    display: flex;
+  }
+.flex-column {
+    flex-direction: column;
+  }
+.flex-row {
+    flex-direction: row;
+  }
+.flex-space-between {
+    justify-content: space-between;
+  }
+.flex-space-around {
+    justify-content: space-around;
+  }
+
+  .card {
+    overflow: hidden;
+    .card-header {
+      padding-top: 1rem;
+      padding-left: 2rem;
+    }
+  }
+
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+  }
+  [data-bs-color-mode="dark"] {
+    --bs-primary-intense: color-mix(in srgb, var(--bs-primary) 80%, white);
+    --bs-primary-gradient: linear-gradient(45deg, var(--bs-primary), var(--bs-primary-intense));
+    --bs-success: var(--bs-green-dark);
+    --bs-success-intense: color-mix(in srgb, var(--bs-green-dark) 80%, white);
+    --bs-success-gradient: var(--bs-green-dark-gradient);
+    --bs-success-intense-gradient: var(--bs-green-gradient);
+    --bs-info: var(--bs-blue-dark);
+    --bs-info-intense: color-mix(in srgb, var(--bs-blue-dark) 80%, white);
+    --bs-info-gradient: var(--bs-blue-dark-gradient);
+    --bs-info-intense-gradient: var(--bs-blue-gradient);
+    --bs-warning: var(--bs-yellow-dark);
+    --bs-warning-intense: color-mix(in srgb, var(--bs-yellow-dark) 80%, white);
+    --bs-warning-gradient: var(--bs-yellow-dark-gradient);
+    --bs-warning-intense-gradient: var(--bs-yellow-gradient);
+    --bs-danger: var(--bs-red-dark);
+    --bs-danger-intense: color-mix(in srgb, var(--bs-red-dark) 80%, white);
+    --bs-danger-gradient: var(--bs-red-dark-gradient);
+    --bs-danger-intense-gradient: var(--bs-red-gradient);
+
+    .btn {
+      color: var(--bs-body-bg);
+      border: none;
+    }
+    .btn-danger {
+      background-color: var(--bs-danger);
+      border-color: var(--bs-danger);
+    }
+    .btn-secondary {
+      background-color: var(--bs-secondary);
+      border-color: var(--bs-secondary);
+    }
+    .btn-warning {
+      background-color: var(--bs-warning);
+      border-color: var(--bs-warning);
+    }
+    .btn-success {
+      background-color: var(--bs-success);
+      border-color: var(--bs-success);
+    }
+    .btn-info {
+      background-color: var(--bs-info);
+      border-color: var(--bs-info);
+    }
+    .btn-primary {
+      background-color: var(--bs-primary);
+      border-color: var(--bs-primary);
+    }
+    .btn-primary:hover {
+      background: var(--bs-primary-gradient);
+    }
+
+    .card {
+      .card-header {
+        background: var(--bs-primary-gradient);
+        color: var(--bs-body-bg);
+      }
+    }
+
+    .table-marker-primary {
+      --bs-table-color-type: var(--bs-body-bg) !important;
+      --bs-table-bg: var(--bs-primary);
+    }
+    .table-marker-secondary {
+      --bs-table-color-type: var(--bs-body-bg) !important;
+      --bs-table-bg: var(--bs-secondary);
+    }
+    .table-marker-success {
+      --bs-table-color-type: var(--bs-body-bg) !important;
+      --bs-table-bg: var(--bs-success);
+    }
+    .table-marker-success:hover {
+      --bs-table-color-type: var(--bs-body-bg) !important;
+      --bs-table-bg: var(--bs-success);
+    }
+    .table-marker-danger {
+      --bs-table-color-type: var(--bs-body-bg) !important;
+      --bs-table-bg: var(--bs-danger);
+    }
+    .table-marker-warning {
+      --bs-table-color-type: var(--bs-body-bg) !important;
+      --bs-table-bg: var(--bs-warning);
+    }
+    .table-marker-info {
+      --bs-table-color-type: var(--bs-body-bg) !important;
+      --bs-table-bg: var(--bs-info);
+    }
+  }
+
+  [data-bs-color-mode="normal"] {
+    --bs-primary-intense: color-mix(in srgb, var(--bs-primary) 80%, white);
+    --bs-primary-gradient: linear-gradient(45deg, var(--bs-primary), var(--bs-primary-intense));
+    --bs-success: var(--bs-green);
+    --bs-success-intense: color-mix(in srgb, var(--bs-green) 80%, white);
+    --bs-success-gradient: var(--bs-green-gradient);
+    --bs-success-intense-gradient: var(--bs-green-gradient);
+    --bs-info: var(--bs-blue);
+    --bs-info-intense: color-mix(in srgb, var(--bs-blue) 80%, white);
+    --bs-info-gradient: var(--bs-blue-gradient);
+    --bs-info-intense-gradient: var(--bs-blue-gradient);
+    --bs-warning: var(--bs-yellow);
+    --bs-warning-intense: color-mix(in srgb, var(--bs-yellow) 80%, white);
+    --bs-warning-gradient: var(--bs-yellow-gradient);
+    --bs-warning-intense-gradient: var(--bs-yellow-gradient);
+    --bs-danger: var(--bs-red);
+    --bs-danger-intense: color-mix(in srgb, var(--bs-red) 80%, white);
+    --bs-danger-gradient: var(--bs-red-gradient);
+    --bs-danger-intense-gradient: var(--bs-red-gradient);
+
+    .btn {
+      color: var(--bs-body-bg);
+      border: none;
+    }
+    .btn-danger {
+      background-color: var(--bs-danger);
+      border-color: var(--bs-danger);
+    }
+    .btn-secondary {
+      background-color: var(--bs-secondary);
+      border-color: var(--bs-secondary);
+    }
+    .btn-warning {
+      background-color: var(--bs-warning);
+      border-color: var(--bs-warning);
+    }
+    .btn-success {
+      background-color: var(--bs-success);
+      border-color: var(--bs-success);
+    }
+    .btn-info {
+      background-color: var(--bs-info);
+      border-color: var(--bs-info);
+    }
+    .btn-primary {
+      background-color: var(--bs-primary);
+      border-color: var(--bs-primary);
+    }
+    .btn-primary:hover {
+      background: var(--bs-primary-gradient);
+    }
+
+    .card {
+      .card-header {
+        background: var(--bs-primary-gradient);
+        color: var(--bs-body-bg);
+      }
+    }
+
+    .table-marker-primary {
+      --bs-table-color-type: var(--bs-body-bg) !important;
+      --bs-table-bg: var(--bs-primary);
+    }
+    .table-marker-secondary {
+      --bs-table-color-type: var(--bs-body-bg) !important;
+      --bs-table-bg: var(--bs-secondary);
+    }
+    .table-marker-success {
+      --bs-table-color-type: var(--bs-body-bg) !important;
+      --bs-table-bg: var(--bs-success);
+    }
+    .table-marker-success:hover {
+      --bs-table-color-type: var(--bs-body-bg) !important;
+      --bs-table-bg: var(--bs-success);
+    }
+    .table-marker-danger {
+      --bs-table-color-type: var(--bs-body-bg) !important;
+      --bs-table-bg: var(--bs-danger);
+    }
+    .table-marker-warning {
+      --bs-table-color-type: var(--bs-body-bg) !important;
+      --bs-table-bg: var(--bs-warning);
+    }
+    .table-marker-info {
+      --bs-table-color-type: var(--bs-body-bg) !important;
+      --bs-table-bg: var(--bs-info);
+    }
+  }
+  [data-bs-color-mode="pastel"] {
+    /* --bs-primary: #f8f9fa;
+    --bs-secondary: #6c757d; */
+    --bs-primary-intense : color-mix(in srgb, var(--bs-primary) 80%, black);
+    --bs-primary-gradient: linear-gradient(45deg, var(--bs-primary), var(--bs-primary-intense));
+    --bs-success: var(--bs-green-pastel);
+    --bs-success-intense: color-mix(in srgb, var(--bs-green-pastel) 80%, black);
+    --bs-success-gradient: var(--bs-green-pastel-gradient);
+    --bs-success-intense-gradient: var(--bs-green-gradient);
+    --bs-info: var(--bs-blue-pastel);
+    --bs-info-intense: color-mix(in srgb, var(--bs-blue-pastel) 80%, black);
+    --bs-info-gradient: var(--bs-blue-pastel-gradient);
+    --bs-info-intense-gradient: var(--bs-blue-gradient);
+    --bs-warning: var(--bs-yellow-pastel);
+    --bs-warning-intense: color-mix(in srgb, var(--bs-yellow-pastel) 80%, black);
+    --bs-warning-gradient: var(--bs-yellow-pastel-gradient);
+    --bs-warning-intense-gradient: var(--bs-yellow-gradient);
+    --bs-danger: var(--bs-red-pastel);
+    --bs-danger-intense: color-mix(in srgb, var(--bs-red-pastel) 80%, black);
+    --bs-danger-gradient: var(--bs-red-pastel-gradient);
+    --bs-danger-intense-gradient: var(--bs-red-gradient);
+    /* --bs-light: #f8f9fa;
+    --bs-dark: #212529;
+    --bs-body-bg: #fff;
+    --bs-body-color: #212529; */
+    .btn {
+        color: var(--bs-body-bg);
+        border: none
+    }
+    .btn-danger {
+      background-color: var(--bs-danger);
+      border-color: var(--bs-danger);
+    }
+    .btn-secondary {
+      background-color: var(--bs-secondary);
+      border-color: var(--bs-secondary);
+    }
+    .btn-warning {
+      background-color: var(--bs-warning);
+      border-color: var(--bs-warning);
+    }
+
+    .btn-success {
+      background-color: var(--bs-success);
+      border-color: var(--bs-success);
+    }
+    .btn-info {
+      background-color: var(--bs-info);
+      border-color: var(--bs-info);
+    }
+    .btn-primary {
+      background-color: var(--bs-primary);
+      border-color: var(--bs-primary);
+    }
+    .btn-primary:hover {
+        background: var(--bs-primary-gradient);
+      }
+
+    /* .table {
+      --bs-table-color: var(--bs-body-color);
+      --bs-table-bg: color-mix(in srgb, var(--bs-primary) 40%, var(--bs-body-bg));
+      --bs-table-border-color: var(--bs-border-color);
+      --bs-table-striped-bg: color-mix(in srgb, var(--bs-primary) 30%, var(--bs-body-bg));
+      --bs-table-striped-color: var(--bs-body-color);
+      --bs-table-striped-columns-bg: color-mix(in srgb, var(--bs-primary) 10%, var(--bs-body-bg));
+      --bs-table-striped-columns-color: var(--bs-body-color);
+      --bs-table-active-bg: color-mix(in srgb, var(--bs-primary) 20%, var(--bs-body-bg));
+      --bs-table-active-color: var(--bs-body-color);
+      --bs-table-hover-bg: color-mix(in srgb, var(--bs-primary) 50%, var(--bs-body-bg));
+      --bs-table-hover-color: var(--bs-body-color);
+      color: var(--bs-table-color);
+      border-color: var(--bs-table-border-color);
+
+    }  */
+
+    .table {
+      --bs-table-hover-color: unset;
+
+    }
+    .card {
+      overflow: hidden;
+    }
+    .card {
+      .card-header {
+        background: var(--bs-primary-gradient);
+        color: var(--bs-body-bg);
+      }
+    }
+
+    /* .table-success {
+      --bs-table-color: var(--bs-body-color);
+      --bs-table-bg: color-mix(in srgb, var(--bs-success) 40%, var(--bs-body-bg));
+      --bs-table-border-color: color-mix(in srgb, var(--bs-success) 30%, var(--bs-body-bg));
+      --bs-table-striped-bg: color-mix(in srgb, var(--bs-success) 30%, var(--bs-body-bg));
+      --bs-table-striped-color: var(--bs-body-color);
+      --bs-table-striped-columns-bg: color-mix(in srgb, var(--bs-success) 10%, var(--bs-body-bg));
+      --bs-table-striped-columns-color: var(--bs-body-color);
+      --bs-table-active-bg: color-mix(in srgb, var(--bs-success) 80%, var(--bs-body-bg));
+      --bs-table-active-color: var(--bs-body-color);
+      --bs-table-hover-bg: color-mix(in srgb, var(--bs-success) 80%, var(--bs-body-bg));
+      --bs-table-hover-color: var(--bs-body-color);
+      color: var(--bs-table-color);
+      border-color: var(--bs-table-border-color);
+    }
+
+    .table-danger {
+      --bs-table-color: var(--bs-body-color);
+      --bs-table-bg: color-mix(in srgb, var(--bs-danger) 40%, var(--bs-body-bg));
+      --bs-table-border-color: color-mix(in srgb, var(--bs-danger) 30%, var(--bs-body-bg));
+      --bs-table-striped-bg: color-mix(in srgb, var(--bs-danger) 30%, var(--bs-body-bg));
+      --bs-table-striped-color: var(--bs-body-color);
+      --bs-table-striped-columns-bg: color-mix(in srgb, var(--bs-danger) 10%, var(--bs-body-bg));
+      --bs-table-striped-columns-color: var(--bs-body-color);
+      --bs-table-active-bg: color-mix(in srgb, var(--bs-danger) 20%, var(--bs-body-bg));
+      --bs-table-active-color: var(--bs-body-color);
+      --bs-table-hover-bg: color-mix(in srgb, var(--bs-danger) 50%, var(--bs-body-bg));
+      --bs-table-hover-color: var(--bs-body-color);
+      color: var(--bs-table-color);
+      border-color: var(--bs-table-border-color);
+    }
+
+    .table-warning {
+      --bs-table-color: var(--bs-body-color);
+      --bs-table-bg: color-mix(in srgb, var(--bs-warning) 40%, var(--bs-body-bg));
+      --bs-table-border-color: color-mix(in srgb, var(--bs-warning) 30%, var(--bs-body-bg));
+      --bs-table-striped-bg: color-mix(in srgb, var(--bs-warning) 30%, var(--bs-body-bg));
+      --bs-table-striped-color: var(--bs-body-color);
+      --bs-table-striped-columns-bg: color-mix(in srgb, var(--bs-warning) 10%, var(--bs-body-bg));
+      --bs-table-striped-columns-color: var(--bs-body-color);
+      --bs-table-active-bg: color-mix(in srgb, var(--bs-warning) 20%, var(--bs-body-bg));
+      --bs-table-active-color: var(--bs-body-color);
+      --bs-table-hover-bg: color-mix(in srgb, var(--bs-warning) 50%, var(--bs-body-bg));
+      --bs-table-hover-color: var(--bs-body-color);
+      color: var(--bs-table-color);
+      border-color: var(--bs-table-border-color);
+    }
+
+    .table-info {
+      --bs-table-color: var(--bs-body-color);
+      --bs-table-bg: color-mix(in srgb, var(--bs-info) 40%, var(--bs-body-bg));
+      --bs-table-border-color: color-mix(in srgb, var(--bs-info) 30%, var(--bs-body-bg));
+      --bs-table-striped-bg: color-mix(in srgb, var(--bs-info) 30%, var(--bs-body-bg));
+      --bs-table-striped-color: var(--bs-body-color);
+      --bs-table-striped-columns-bg: color-mix(in srgb, var(--bs-info) 10%, var(--bs-body-bg));
+      --bs-table-striped-columns-color: var(--bs-body-color);
+      --bs-table-active-bg: color-mix(in srgb, var(--bs-info) 20%, var(--bs-body-bg));
+      --bs-table-active-color: var(--bs-body-color);
+      --bs-table-hover-bg: color-mix(in srgb, var(--bs-info) 50%, var(--bs-body-bg));
+      --bs-table-hover-color: var(--bs-body-color);
+      color: var(--bs-table-color);
+      border-color: var(--bs-table-border-color);
+    }
+
+    .table-primary {
+      --bs-table-color: var(--bs-body-color);
+      --bs-table-bg: color-mix(in srgb, var(--bs-primary) 40%, var(--bs-body-bg));
+      --bs-table-border-color: color-mix(in srgb, var(--bs-primary) 30%, var(--bs-body-bg));
+      --bs-table-striped-bg: color-mix(in srgb, var(--bs-primary) 30%, var(--bs-body-bg));
+      --bs-table-striped-color: var(--bs-body-color);
+      --bs-table-striped-columns-bg: color-mix(in srgb, var(--bs-primary) 10%, var(--bs-body-bg));
+      --bs-table-striped-columns-color: var(--bs-body-color);
+      --bs-table-active-bg: color-mix(in srgb, var(--bs-primary) 20%, var(--bs-body-bg));
+      --bs-table-active-color: var(--bs-body-color);
+      --bs-table-hover-bg: color-mix(in srgb, var(--bs-primary) 50%, var(--bs-body-bg));
+      --bs-table-hover-color: var(--bs-body-color);
+      color: var(--bs-table-color);
+      border-color: var(--bs-table-border-color);
+    }
+
+    .table-secondary {
+      --bs-table-color: var(--bs-body-color);
+      --bs-table-bg: color-mix(in srgb, var(--bs-secondary) 40%, var(--bs-body-bg));
+      --bs-table-border-color: color-mix(in srgb, var(--bs-secondary) 30%, var(--bs-body-bg));
+      --bs-table-striped-bg: color-mix(in srgb, var(--bs-secondary) 30%, var(--bs-body-bg));
+      --bs-table-striped-color: var(--bs-body-color);
+      --bs-table-striped-columns-bg: color-mix(in srgb, var(--bs-secondary) 10%, var(--bs-body-bg));
+      --bs-table-striped-columns-color: var(--bs-body-color);
+      --bs-table-active-bg: color-mix(in srgb, var(--bs-secondary) 20%, var(--bs-body-bg));
+      --bs-table-active-color: var(--bs-body-color);
+      --bs-table-hover-bg: color-mix(in srgb, var(--bs-secondary) 50%, var(--bs-body-bg));
+      --bs-table-hover-color: var(--bs-body-color);
+      color: var(--bs-table-color);
+      border-color: var(--bs-table-border-color);
+    } */
+
+      .table-marker-primary {
+        --bs-table-color-type: var(--bs-body-bg) !important;
+        --bs-table-bg: var(--bs-primary);
+      }
+      .table-marker-secondary {
+        --bs-table-color-type: var(--bs-body-bg) !important;
+        --bs-table-bg: var(--bs-secondary);
+      }
+      .table-marker-success {
+        --bs-table-color-type: var(--bs-body-bg) !important;
+        --bs-table-bg: var(--bs-success);
+        
+      }
+      .table-marker-success:hover {
+
+        --bs-table-color-type: var(--bs-body-bg) !important;
+        --bs-table-bg: var(--bs-success);
+      }
+      .table-marker-danger {
+        --bs-table-color-type: var(--bs-body-bg) !important;
+        --bs-table-bg: var(--bs-danger);
+      }
+      .table-marker-warning  {
+        --bs-table-color-type: var(--bs-body-bg) !important;
+        --bs-table-bg: var(--bs-warning);
+      }
+      .table-marker-info {
+        --bs-table-color-type: var(--bs-body-bg) !important;
+        --bs-table-bg: var(--bs-info);
+      }
+
+  }

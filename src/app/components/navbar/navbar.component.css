@@ -1,0 +1,112 @@
+nav
+{
+    --bs-nav-link-font-size: 0.8rem;
+
+}
+
+* {
+    transition: background 0.3s ease-in-out;
+}
+
+nav {
+    /* border: 2px solid rgba(var(--bs-primary), 0.5); */
+    /* box-sizing: border-box; */
+}
+.nav-link { 
+    width: 100%;
+    margin:auto;
+    height:fit-content;
+    color: var(--bs-body-bg);
+}
+ul.nav.nav-pills, nav-item, nav-pill {
+    height:fit-content;
+}
+
+.dropdown-menu-wrapper {
+    background: var(--bs-body-bg);
+    border-radius: 2rem 2rem 2rem 2rem;
+    border-top: 2px solid var(--bs-primary);
+    border-left: 4px solid var(--bs-primary);
+    border-bottom: 2px solid var(--bs-primary);
+    border-right: 1px solid var(--bs-primary);
+    overflow: hidden;
+}
+
+.dropdown-item:hover, .bg-primary:hover {
+    background: var(--bs-primary-gradient);
+    color: var(--bs-body-bg);
+}
+
+.dropdown-item, .dropdown-menu select, .dropdown-menu input {
+    color: var(--bs-primary);
+}
+
+.dropdown-menu {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    /* z-index: -1; */
+    border: 2px solid var(--bs-primary-gradient);
+    /* border-radius: 2.5rem 2.5rem 2rem 2rem !important; */
+    /* outline: 1px solid var(--bs-primary); */
+    /* outline-offset: 4px; */
+    overflow:hidden;
+    /* background-color: var(--bs-primary); */
+    /* color: var(--bs-body-bg); */
+}
+.dropdown-menu li a {
+    /* color: var(--bs-body-bg); */
+}
+.dropdown-menu li {
+    text-align: center;
+
+}
+.dropdown-menu li:hover {
+    text-align: center;
+    background-color: var(--bs-primary);
+}
+button.dropdown-toggle {
+    /* outline: 2px solid var(--bs-primary);
+    outline-offset: 4px; */
+    /* background-color: var(--bs-body-bg); */
+    /* color: var(--bs-body-bg); */
+    text-wrap: wrap;
+}
+button.dropdown-toggle[aria-expanded="true"] {
+    /* outline: 2px solid var(--bs-primary);
+    outline-offset: 4px; */
+    /* background-color: var(--bs-body-bg); */
+    /* color: var(--bs-primary); */
+    border-radius: 2rem 2rem 0 0 !important;
+}
+div.nav-item:has(button.dropdown-toggle) {
+    height:fit-content;
+    min-width:12rem;
+    width:fit-content;
+    --bs-nav-link-padding-x: 1rem;
+    --bs-nav-link-padding-y: 0.5rem;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    position:relative;
+}
+div.nav-item:has(button.dropdown-toggle[aria-expanded="true"]) {
+    background: var(--bs-primary-gradient);
+    border-radius: 2rem 2rem 0 0 !important;
+}
+div.nav-item:has(button.dropdown-toggle[aria-expanded="true"]) .dropdown-menu {
+    background: var(--bs-primary-gradient);
+    border-radius: 0 0 2rem 2rem  !important;
+}
+/* 
+ul  li div button.dropdown-toggle[aria-expanded="true"]{
+    border-radius: 2 rem 2rem 0 0 !important;
+} */
+
+nav.navbar {
+    background-color: var(--bs-primary);
+    border-radius: 2rem 2rem 0 0;
+}
+nav div ul.nav-pills {
+    padding-left: 4rem;
+}

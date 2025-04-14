@@ -1,0 +1,9 @@
+@if (isAdmin()) {
+    <app-admin-dashboard></app-admin-dashboard>
+} @else if (isStaff()) {
+    <app-staff-dashboard></app-staff-dashboard>
+} @else if (isUser()) {
+    <app-user-dashboard></app-user-dashboard>
+} @else {
+    <app-guest-dashboard></app-guest-dashboard>
+}

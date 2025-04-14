@@ -1,6 +1,15 @@
-<app-supplier-form></app-supplier-form>
+<app-supplier-form [showModal]="addEditModalOpen" [supplier]="selectedSupplier" (closeModal)="closeModal()" [editMode]="editMode"></app-supplier-form>
 
-<table class="table table-striped">
+<div class="card rounded-5">
+    <div class="card-header d-flex justify-content-between">
+        <h3 class="card-title">Suppliers</h3>
+        <button class="btn rounded-5 btn-primary" (click)="onAdd()">Add Supplier</button>
+    </div>
+    <div class="card-body">
+        <!-- <app-search-bar (search)="onSearch($event)"></app-search-bar>
+        <app-pagination [totalItems]="suppliers.length" [itemsPerPage]="itemsPerPage" (pageChange)="onPageChange($event)"></app-pagination>
+        <app-sort-bar (sort)="onSort($event)"></app-sort-bar> -->
+<table class="table table-striped table-hover table-responsive">
     <thead>
         <tr>
             <th>Supplier ID</th>
@@ -11,15 +20,18 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let supplier of suppliers; let i=index" (click)="selectSupplier(i)">
+        <tr *ngFor="let supplier of suppliers; let i=index">
             <td>{{ supplier.id }}</td>
             <td>{{ supplier.name }}</td>
-            <td>{{ supplier.contactInfo }}</td>
-            <td>{{ supplier.rating }}</td>
+            <td style="white-space: pre-wrap;">{{ supplier.contactInfo  }}</td>
+            <td>{{ supplier.rating | number }}</td>
             <td>
-                <button class="btn btn-primary" (click)="onUpdate(supplier.id)">Update</button>
-                <button class="btn btn-danger" (click)="onDelete(supplier.id)">Delete</button>
+                <div class="button-group d-flex gap-2">
+                    <button class="btn rounded-5 btn-primary" (click)="onUpdate(supplier)">Update</button>
+                    <button class="btn rounded-5 btn-danger" (click)="onDelete(supplier.id)">Delete</button>
+            </div>
             </td>
         </tr>
     </tbody>
 </table>
+    </div>

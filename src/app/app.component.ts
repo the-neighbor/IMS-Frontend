@@ -6,6 +6,7 @@ import { AuthService } from './services/auth.service';
 import { ProductService } from './services/product.service';
 import bootstrap from 'bootstrap';
 
+
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, NavbarComponent],

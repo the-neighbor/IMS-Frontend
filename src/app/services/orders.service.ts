@@ -50,6 +50,14 @@ export class OrdersService {
     const headers = { 'Authorization': 'Bearer ' + this.auth.getToken() };
     return this.http.post<OrderDTO>(environment.API_URL + environment.IMS_PATH + '/orders/place', order, { headers });
   }
+  getOrdersBySku(sku: number) {
+    const headers = { 'Authorization': 'Bearer ' + this.auth.getToken() };
+    return this.http.get<OrderDTO[]>(environment.API_URL + environment.ORDERS_PATH + "/sku/" + sku, { headers });
+  }
+  getOrdersBySupplierId(supplierId: number) {
+    const headers = { 'Authorization': 'Bearer ' + this.auth.getToken() };
+    return this.http.get<OrderDTO[]>(environment.API_URL + environment.ORDERS_PATH + "/supplier/" + supplierId, { headers });
+  }
   markAsCompleted(id: string) {
     const headers = { 'Authorization': 'Bearer ' + this.auth.getToken() };
     return this.http.post<OrderDTO>(environment.API_URL + environment.ORDERS_PATH + "/mark-complete/" + id, {}, { headers });

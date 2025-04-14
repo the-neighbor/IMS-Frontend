@@ -1,5 +1,69 @@
-<h2>Sales</h2>
-<table class="table table-striped">
+
+<app-admin-view-sale [showModal]="showModal" [sale]="selectedSale" [inventoryStocks]="selectedSaleInventory" (closeModal)="showModal=false" ></app-admin-view-sale>
+
+<div class="card rounded-5">
+    <div class="card-header">
+        <h3 class="card-title">Sales</h3>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped-columns table-hover table-responsive">
+            <thead>
+                <tr>
+                    <th>Creation Date</th>
+                    <th>Status</th>
+                    <th>Sale ID</th>
+                    <th>Customer</th>
+                    <th>Products</th>
+                    <th>Total Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let sale of salesList; let i = index;" >
+                    <td>{{ sale.saleCreated | date }}</td>
+                    <td [class]="{'table-marker-success': sale.saleStatus == 'COMPLETED' || sale.saleStatus=='SHIPPED', 'table-marker-danger': sale.saleStatus == 'CANCELLED', 'table-marker-warning': sale.saleStatus=='PENDING' &&!sufficientStock(sale)}">{{ sale.saleStatus }}</td>
+                    <td>{{ sale.saleId }}</td>
+                    <td>{{ sale.customerUsername }}</td>
+                    <td>
+                        <ul>
+                            @for (product of products(sale); track $index) {
+                            <li>
+                                {{ product?.name }} ({{ product?.quantity }})
+                            </li>
+                            }
+                        </ul>
+                    </td>
+                    <td>{{ sale.totalPrice | currency }}</td>
+                    <td>
+                        <button class="btn btn-primary rounded-5" (click)="viewSale(sale)">View</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Compare this snippet from src/app/pages/admin-sales/admin-sales.component.html: -->
+    <!-- <app-view-sale [showModal]="showModal" [sale]="selectedSale" (closeModal)="showModal=false" ></app-view-sale> -->
+    <!-- Compare this snippet from src/app/pages/sales/sales.component.html: -->
+    <!-- <div class="card rounded-5"> -->
+    <!--     <div class="card-header"> -->
+    <!--         <h2>Purchases</h2> -->
+    <!--     </div> -->
+    <!--     <div class="card-body"> -->
+    <!--         <table class="table table-striped table-hover table-responsive"> -->
+    <!--             <thead> -->
+    <!--                 <tr> -->
+    <!--                     <th>Status</th> -->
+    <!--                     <th>Creation Date</th> -->
+    <!--                     <th>Sale ID</th> -->
+    <!--                     <th>Products</th> -->
+    <!--                     <th>Total Price</th> -->
+    <!--                     <th>Actions</th> -->
+    <!--                 </tr> -->
+    <!--             </thead> -->
+    <!--             <tbody> -->
+<!-- <h2>Sales</h2>
+<table class="table table-striped table-hover table-responsive">
     <thead>
         <tr>
             <th>Creation Date</th>
@@ -28,4 +92,4 @@
             <td>{{ sale.totalPrice | currency }}</td>
         </tr>
     </tbody>
-</table>
+</table> -->

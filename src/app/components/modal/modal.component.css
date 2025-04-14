@@ -1,0 +1,76 @@
+.fade {
+    transition: opacity 0.3s;
+    opacity: 0;
+}
+
+.show {
+    display: block;
+    opacity: 1;
+    animation: fadeIn 0.3s;
+}
+.show .modal-dialog {
+    animation: zoomIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0;
+     }
+    to { opacity: 1;
+     }
+}
+@keyframes fadeOut {
+    from { opacity: 1;
+     }
+    to { opacity: 0;
+}
+}
+@keyframes zoomIn {
+    from { transform: scale(0.5);
+     }
+    to { transform: scale(1);
+     }
+}
+@keyframes zoomOut {
+    from { transform: scale(1);
+     }
+    to { transform: scale(0.5);
+    }
+}
+.fade not .show{
+    animation: fadeOut 0.3s;
+    opacity: 0;
+}
+.fade not .show .modal-dialog {
+    animation: zoomOut 0.3s;
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: all 0.3s;
+    --bs-modal-width: fit-content;
+    --bs-modal-min-width: 35%;
+    --bs-modal-height: auto;
+
+    min-width: 35%;
+}
+.modal-dialog {
+    /* max-width: 100%;
+    max-height: 100%; */
+    min-width: 40%;
+    overflow: auto;
+    --bs-modal-border-color: var(--bs-secondary);
+    --bs-modal-border-width: 0.25rem;
+    --bs-modal-border-style: solid;
+    --bs-modal-border-radius: 2rem;
+}
+
+.modal:focus-within .modal-dialog,.modal:focus .modal-dialog {  
+    /* max-width: 100%;
+    max-height: 100%; */
+    min-width: 40%;
+    overflow: auto;
+    --bs-modal-border-color: var(--bs-primary);
+    --bs-modal-border-width: 0.25rem;
+    --bs-modal-border-style: solid;
+    --bs-modal-border-radius: 2rem;
+}

@@ -4,5 +4,6 @@ export interface SaleProductDTO {
     description: string;
     buyPrice: number;
     sellPrice: number;
+    price?: number;
     quantity: number;
 }

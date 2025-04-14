@@ -6,4 +6,7 @@ export interface ProductDTO {
     buyPrice: number;
     sellPrice: number;
     initial_stock: number;
+    supplierId?: number;
+    supplierName?: string;
+    imageUrl?: string;
 }

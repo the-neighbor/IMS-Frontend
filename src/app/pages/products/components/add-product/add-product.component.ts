@@ -1,11 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProductService } from '../../../../services/product.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductDTO } from '../../../../models/interfaces/productDTO';
+import { ModalComponent } from "../../../../components/modal/modal.component";
+import { SpecifySupplierComponent } from "../../../orders/components/specify-supplier/specify-supplier.component";
+import { SupplierDTO } from '../../../../models/interfaces/supplierDTO';
+import { ProductFormComponent } from '../product-form/product-form.component';
+import { IconComponent } from "../../../../components/icon/icon.component";
 
 @Component({
   selector: 'app-add-product',
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, ModalComponent, SpecifySupplierComponent, ProductFormComponent, IconComponent],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css'
 })
@@ -35,8 +40,43 @@ export class AddProductComponent {
     description: new FormControl(''),
     initial_stock: new FormControl(0),
     buyPrice: new FormControl(0),
-    sellPrice: new FormControl(0)
+    sellPrice: new FormControl(0),
+    supplierId: new FormControl(0),
+    supplierName: new FormControl('')
   });
+
+  selectedSupplier: SupplierDTO | undefined;
+
+  phase:number = 0;
+  next() {
+    this.phase++;
+  }
+  back() {
+    this.phase--;
+  }
+
+  showModalValue: boolean = false;
+  @Input()set showModal(value: boolean) {
+    if (!value && this.showModalValue) {
+      this.closeModal.emit();
+    }
+    this.showModalValue = value;
+    console.log(this.showModalValue);
+    // if (value) {
+    //   this.registerForm.reset();
+    // }
+  }
+  get showModal() {
+    return this.showModalValue;
+  }
+  @Output() closeModal: EventEmitter<void> = new EventEmitter<void>();
+
+  onSupplierSelected(supplierDTO: SupplierDTO) {
+    this.selectedSupplier = supplierDTO;
+    this.productForm.patchValue({ supplierId: supplierDTO.id, supplierName: supplierDTO.name });
+    this.next();
+  }
+
   onSubmit() {
     if (this.editMode && this.selectedProduct && this.selectedSku) {
       this.productService.updateProduct(this.selectedSku, this.productForm.value).subscribe(

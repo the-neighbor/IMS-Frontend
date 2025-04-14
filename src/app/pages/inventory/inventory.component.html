@@ -1,36 +1,40 @@
-<p>inventory works!</p>
 @if (viewingAlerts) {
     <app-view-alerts [alerts]="alerts" (viewInventory)="viewInventory()"></app-view-alerts>
 } @else {
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card rounded-5">
             <div class="card-header" style="display:flex; justify-content:space-between">
                 <h3 class="card-title" style="display:inline">Inventory</h3>
                 @if(alerts.length > 0) {
-                <button class="btn btn-warning float-right" (click)="viewAlerts()" >View Alerts</button>
+                <button class="btn rounded-5 btn-warning float-right" (click)="viewAlerts()" >View Alerts</button>
                 } @else {
-                <button class="btn btn-secondary float-right" [disabled]="true">No Alerts</button>
+                <button class="btn rounded-5 btn-secondary float-right" [disabled]="true">No Alerts</button>
                 }
                 </div>
             <div class="card-body">
-                <table class="table table-striped">
+                <table class="table table-striped table-hover table-responsive">
                     <thead>
                         <tr>
                             <th>SKU</th>
-                            <!-- <th>Product Name</th>
-                            <th>Description</th>
-                            <th>Price</th> -->
-                            <th>Quantity</th>
+                            <th>Product Name</th>
+                            <!-- <th>Description</th> -->
+                            <th>Our Current Stock</th>
+                            <th>Units Sold <br/>Pending Shipment</th>
+                            <th>Current Supplier</th>
+                            <th>Supplier's Price</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let product of inventory" [routerLink]="['/products','view', product.sku]">
+                        <tr *ngFor="let product of combineAllForAll()" [class]="{'table-warning':product.quantity<product.inPending}"  [routerLink]="['/products','view', product.sku]">
                             <td>{{ product.sku }}</td>
-                            <!-- <td>{{ product.name }}</td>
-                            <td>{{ product.description }}</td>
-                            <td>{{ product.buyPrice | currency }}</td> -->
+                            <!-- <td>{{ product.name }}</td> -->
+                            <!-- <td>{{ product.description }}</td> -->
+                            <td>{{ product.name }}</td>
                             <td>{{ product.quantity }}</td>
+                            <td>{{ product.inPending }}</td>
+                            <td>{{ product.supplier }}</td>
+                            <td>{{ product.buyPrice | currency }}</td>
                         </tr>
                     </tbody>
                 </table>

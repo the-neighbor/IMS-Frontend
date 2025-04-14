@@ -41,4 +41,22 @@ export class SalesService {
     const headers = { 'Authorization': 'Bearer ' + this.auth.getToken() };
     return this.http.post<SaleDTO>(environment.API_URL + environment.SALES_PATH + '/place', sale, { headers });
   }
+
+  getSalesBySku(sku: number) {
+    const headers = { 'Authorization': 'Bearer ' + this.auth.getToken() };
+    return this.http.get<SaleDTO[]>(environment.API_URL + environment.SALES_PATH + '/sku/' + sku, { headers });
+  }
+
+  markAsCompleted(id: string) {
+    const headers = { 'Authorization': 'Bearer ' + this.auth.getToken() };
+    return this.http.post<SaleDTO>(environment.API_URL + environment.SALES_PATH + '/mark-complete/' + id, {}, { headers });
+  }
+  markAsCancelled(id: string) {
+    const headers = { 'Authorization': 'Bearer ' + this.auth.getToken() };
+    return this.http.post<SaleDTO>(environment.API_URL + environment.SALES_PATH + '/mark-cancelled/' + id, {}, { headers });
+  }
+  markAsShipped(id: string) {
+    const headers = { 'Authorization': 'Bearer ' + this.auth.getToken() };
+    return this.http.post<SaleDTO>(environment.API_URL + environment.SALES_PATH + '/mark-shipped/' + id, {}, { headers });
+  }
 }

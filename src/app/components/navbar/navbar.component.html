@@ -1,21 +1,128 @@
-<nav>
-   <button class="btn" routerLink="/">Home</button>
-    @if (loggedIn()) {
-       <button class="btn" (click)="logout()">Logout</button>
-    } @else {
-       <button class="btn" routerLink="/login">Login</button>
-       <button class="btn" routerLink="/register">Register</button>
-    }
-    <button class="btn" [disabled]="!loggedIn()" routerLink="/products">Products</button>
-   <button class="btn" [disabled]="!loggedIn()" routerLink="/suppliers">Suppliers</button>
-   <button class="btn" [disabled]="!loggedIn()" routerLink="/inventory">Inventory</button>
-   @if (isUser()) {
-      <button class="btn" [disabled]="!loggedIn()" routerLink="/purchase-orders">Orders</button>
-   } @else{
-   <button class="btn" [disabled]="!loggedIn()" routerLink="/orders">Orders</button>
-   <button class="btn" [disabled]="!loggedIn()" routerLink="/admin-sales">Sales</button>
-   }
-   @if (isAdmin() && !isSeeded()) {
-      <button class="btn btn-warning" (click)="seedData()" [disabled]="!loggedIn()">Add Seed Data</button>
-   }
+<app-register *ngIf="showRegister" [showModal]="showRegister"(closeModal)="showRegister=false"></app-register>
+<app-login *ngIf="showLogin" [showModal]="showLogin"(closeModal)="showLogin=false"></app-login>
+<nav class="rounded-5 m-2">
+   <!-- <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-body-bg); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-body-bg);">
+      <li class="nav-item" role="presentation">
+         <button class="nav-link rounded-5" routerLink="/home" routerLinkActive="active" [attr.aria-selected]="routerLinkActive === 'active'" id="home-tab2" type="button" role="tab">Home</button>
+      </li>
+      <li class="nav-item" role="presentation">
+         <button class="nav-link rounded-5" routerLink="/profile" routerLinkActive="active" [attr.aria-selected]="routerLinkActive === 'active'" id="profile-tab2" type="button" role="tab">Profile</button>
+      </li>
+      <li class="nav-item" role="presentation">
+         <button class="nav-link rounded-5" routerLink="/contact" routerLinkActive="active" [attr.aria-selected]="routerLinkActive === 'active'" id="contact-tab2" type="button" role="tab">Contact</button>
+      </li>
+   </ul> -->
+
+   <div class="flex flex-space-around">
+      <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 " id="buttonNav" role="tablist" style="--bs-nav-link-color: var(--bs-body-bg); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-body-bg);">
+   <li class="nav-item" role="presentation">
+      <button class="nav-link rounded-5" routerLink="/" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active"><b>IMS</b>: <b>I</b>nventory <b>M</b>anagement <b>S</b>ystem</button>
+   </li> 
+</ul>
+
+   <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 " id="buttonNav" role="tablist" style="--bs-nav-link-color: var(--bs-body-bg); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-body-bg);">
+      <ng-container *ngIf="loggedIn(); else guestMessage">
+         <!-- <li class="nav-item" role="presentation">
+            <button class="nav-link rounded-5" (click)="logout()">Logout</button>
+         </li> -->
+         <li class="nav-item" role="presentation">
+            <button class="nav-link rounded-5" [disabled]="!loggedIn()" routerLink="/products" routerLinkActive="active">Products</button>
+         </li>
+         <ng-container *ngIf="isStaff()">
+         <li class="nav-item" role="presentation">
+            <button class="nav-link rounded-5" [disabled]="!loggedIn()" routerLink="/suppliers" routerLinkActive="active">Suppliers</button>
+         </li>
+         <li class="nav-item" role="presentation">
+            <button class="nav-link rounded-5" [disabled]="!loggedIn()" routerLink="/inventory" routerLinkActive="active">Inventory</button>
+         </li>
+         </ng-container>
+         <ng-container *ngIf="isUser(); else adminOrders">
+            <li class="nav-item" role="presentation">
+               <button class="nav-link rounded-5" [disabled]="!loggedIn()" routerLink="/purchase-orders" routerLinkActive="active">Orders</button>
+            </li>
+         </ng-container>
+         <ng-template #adminOrders>
+            <li class="nav-item" role="presentation">
+               <button class="nav-link rounded-5" [disabled]="!loggedIn()" routerLink="/orders" routerLinkActive="active">Orders</button>
+            </li>
+            <li class="nav-item" role="presentation">
+               <button class="nav-link rounded-5" [disabled]="!loggedIn()" routerLink="/admin-sales" routerLinkActive="active">Sales</button>
+            </li>
+         </ng-template>
+      </ng-container>
+      <ng-template #guestButtons>
+         <li class="nav-item" role="presentation">
+            <button class="nav-link rounded-5" (click)="showLogin=true">Login</button>
+         </li>
+         <li class="nav-item" role="presentation">
+            <button class="nav-link rounded-5" (click)="showRegister=true">Register</button>
+         </li>
+      </ng-template>
+      <ng-template #guestMessage>
+         <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5" id="buttonNav" role="tablist" style="--bs-nav-link-color: var(--bs-body-bg); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-body-bg);">
+            <li class="nav-item" role="presentation">
+               <div class="nav-link rounded-5" style="text-wrap-mode: wrap;width: fit-content;">
+               <app-icon icon="shield-lock" size="1rem"></app-icon> <p style="font-size: small;display:inline; text-wrap-mode:wrap;"><b>Guest</b>s may not access the Inventory Management System. Please login or register using the user menu to the right.</p>
+               </div>
+            </li> 
+         </ul>
+      </ng-template>
+      <!-- <ng-container *ngIf="isAdmin() && !isSeeded()">
+         <li class="nav-item" role="presentation">
+            <button class="nav-link rounded-5 btn-warning" (click)="seedData()" [disabled]="!loggedIn()">Add Seed Data</button>
+         </li>
+      </ng-container> -->
+   </ul>
+   <ng-template #guestLinks>
+      <li><a class="dropdown-item" href="#" (click)="showLogin=true">Login</a></li>
+      <li><a class="dropdown-item" href="#" (click)="showRegister=true" >Register</a></li>
+   </ng-template>
+   <ng-template #adminLinks>
+      <li><a class="dropdown-item" href="#" (click)="logout()">Logout</a></li>
+      <li><a class="dropdown-item" href="#" (click)="seedData()">Seed Database</a></li>
+   </ng-template>
+   <ng-template #userLinks>
+      <li><a class="dropdown-item" href="#" (click)="logout()">Logout</a></li>
+      </ng-template>
+   <!-- <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 shadow-sm" id="buttonNav" role="tablist" style="--bs-nav-link-color: var(--bs-body-bg); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-body-bg);"> -->
+      <!-- <li class="nav-item" role="presentation"> -->
+         <div class="flex">
+            <button class="nav-link rounded-5 text-primary m-2" type="button" (click)="toggleDarkMode()" ><app-icon style="stroke-width:8px;" size="1.5rem" [icon]="darkMode? 'moon-fill' : 'sun-fill'"></app-icon></button>
+         <div class="rounded-5-group nav-item p-1 small bg-primary rounded-5" role="presentation">
+            <button class="nav-link rounded-5 dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-offset="0,-2" data-bs-reference="parent" aria-expanded="false">{{getName() || "Guest"}} <app-icon icon="list" size="1rem"  ></app-icon></button>
+
+            <ul class="dropdown-menu rounded-5 bg-primary">
+               <div class="dropdown-menu-wrapper">
+               <!-- <li><button class="nav-link rounded-5 mb-2" type="button" style="opacity: 0; ">-</button></li> -->
+               <ng-container *ngIf="loggedIn(); else guestLinks">
+                  <ng-container *ngIf="isAdmin(); else userLinks">
+                     <ng-container *ngTemplateOutlet="adminLinks"></ng-container>
+                  </ng-container>
+               </ng-container>
+               <!-- <li>Theme:<select class="form-select form-select-sm" aria-label=".form-select-sm example" (change)="changeTheme($event)" [(ngModel)]="theme">
+                  @for (oneTheme of themes; track $index) {
+                     <option value="{{oneTheme}}">{{oneTheme}}</option>
+                  }
+               </select></li> -->
+               <li>
+                  <select class="form-select form-select-sm" aria-label=".form-select-sm example" (change)="changePrimaryColor($event)" [(ngModel)]="primaryColor">
+                     @for (oneTheme of colors; track $index) {
+                     <option value="{{oneTheme}}">{{oneTheme}}</option>
+                     }
+                  </select>
+               </li>
+               <li>
+                  <select class="form-select form-select-sm" aria-label=".form-select-sm example" (change)="changeColorMode($event)" [(ngModel)]="colorMode">
+                     @for (oneTheme of colorModes; track $index) {
+                     <option value="{{oneTheme}}">{{oneTheme}}</option>
+                     }
+                  </select>
+               </li>
+               </div>
+            </ul>
+         </div>
+         </div>
+      <!-- </li>  -->
+   <!-- </ul> -->
+</div>
 </nav>

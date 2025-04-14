@@ -6,6 +6,7 @@ export class emailTakenValidator implements AsyncValidator {
     constructor(private authService: AuthService) {}
 
     validate(control: AbstractControl): Observable<ValidationErrors | null> {
+        console.log('validating email ' + control.value);
         return this.authService.checkEmail(control.value).pipe(
             map((response) => {
                 if (response.data === "true") {
@@ -15,5 +16,8 @@ export class emailTakenValidator implements AsyncValidator {
             }),
             catchError(() => of(null))
         );
+    }
+    boundValidator() {
+        return this.validate.bind(this);
     }
 }

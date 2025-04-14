@@ -1,0 +1,25 @@
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn rounded-5 btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button> -->
+  
+  <!-- Modal -->
+   @if (!hidden) {
+  <div class="modal fade" [class]="{show:!hidden}" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" >
+    <div class="modal-dialog rounded-5">
+      <div class="modal-content">
+        <!-- <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">title</h1>
+          <button type="button" class="btn rounded-5-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body"> -->
+          <ng-content></ng-content>
+        <!-- </div>
+        <div class="modal-footer">
+          <button type="button" class="btn rounded-5 btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn rounded-5 btn-primary">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+}
