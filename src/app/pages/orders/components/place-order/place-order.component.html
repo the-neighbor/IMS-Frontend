@@ -1,3 +1,18 @@
+<app-modal *ngIf="showModal"  [hidden]="!showModal">
+    <div class="modal-header d-flex justify-content-between">
+        <h5 class="modal-title">
+            <ng-container [ngSwitch]="phase">
+                <span *ngSwitchCase="0">Specify Supplier</span>
+                <span *ngSwitchCase="1">Choose Items</span>
+                <span *ngSwitchCase="2">Specify Quantity</span>
+                <span *ngSwitchCase="3">Review Order</span>
+                <span *ngSwitchDefault>Unknown Phase</span>
+            </ng-container>
+        </h5>
+        <button type="button" class="btn rounded-5-close" (click)="showModal=false">
+            <app-icon icon="x" size="2rem"></app-icon>
+        </button>
+    </div>
 @if (phase===0) {
     <app-specify-supplier (supplierSelected)="onSupplierSelected($event)"></app-specify-supplier>
 } @else if (phase ===1) {
@@ -10,3 +25,4 @@
     <button class="btn rounded-5 btn-secondary" (click)="back()">Back</button>
     <app-review-order [finalOrder]="finalOrder"></app-review-order>
 }
+</app-modal>

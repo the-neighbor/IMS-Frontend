@@ -41,6 +41,10 @@
         <span *ngIf="registerForm.get('role')?.errors?.['required']">Role is required</span>
         }
     </div>
+    <div class="form-group">
+        <label class="form-label" for="alertsEnabled">Receive E-mail Alerts?</label>
+        <input type="checkbox" id="alertsEnabled" name="alertsEnabled" formControlName="alertsEnabled">
+    </div>
 </form>
 </div>
 <div class="modal-footer">

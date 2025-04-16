@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ChooseItemsComponent } from "../choose-items/choose-items.component";
 import { SpecifyQuantityComponent } from '../specify-quantity/specify-quantity.component';
 import { SpecifySupplierComponent } from '../specify-supplier/specify-supplier.component';
@@ -8,15 +8,37 @@ import { ProductDTO } from '../../../../models/interfaces/productDTO';
 import { ProductService } from '../../../../services/product.service';
 import { OrderDTO } from '../../../../models/interfaces/orderDTO';
 import { ReviewOrderComponent } from '../review-order/review-order.component';
+import { ModalComponent } from '../../../../components/modal/modal.component';
+import { CommonModule } from '@angular/common';
+import { IconComponent } from '../../../../components/icon/icon.component';
 
 @Component({
   selector: 'app-place-order',
-  imports: [ChooseItemsComponent, SpecifyQuantityComponent, SpecifySupplierComponent,ReviewOrderComponent],
+  imports: [ChooseItemsComponent, SpecifyQuantityComponent, SpecifySupplierComponent,ReviewOrderComponent, CommonModule, ModalComponent, IconComponent],
   templateUrl: './place-order.component.html',
   styleUrl: './place-order.component.css'
 })
 export class PlaceOrderComponent {
 
+
+  @Input() showModalValue: boolean = false;
+  @Input() set showModal(value: boolean) {
+    if (!value && this.showModalValue) {
+      this.close();
+    }
+    this.showModalValue = value;
+    if (value) {
+      this.phase = 0;
+    }
+  }
+  get showModal(): boolean {
+    return this.showModalValue;
+  }
+
+  @Input() updateMode: boolean = false;
+  @Input() selectedOrder: OrderDTO = {} as OrderDTO;
+  @Output() closeModal = new EventEmitter<void>();
+  @Output() submitOrder = new EventEmitter<OrderDTO>();
   phase = 0;
   products: {selected: boolean, product: ProductDTO}[] = [];
   selectedProducts: OrderProductDTO[] = [];
@@ -30,6 +52,16 @@ export class PlaceOrderComponent {
       this.products = data.map((item) => ({ selected: false, product: item }));
     });
   }
+
+  close(){
+    this.phase = 0;
+    this.selectedProducts = [];
+    this.selectedSupplier = {} as SupplierDTO;
+    this.finalOrder = {} as OrderDTO;
+    console.log(this.showModal);
+    this.closeModal.emit();
+  }
+
   onProductsSelected(products: ProductDTO[]) {
     this.selectedProducts = products.map(
       (product) => ({ ...product, quantity: 0 })

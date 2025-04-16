@@ -1,0 +1,12 @@
+
+tr:not(.table-warning) td a {
+  color: var(--bs-primary);
+}
+tr td a{
+    color: var(--bs-body-bg)
+  }
+
+tr td a:hover {
+  color: var(--bs-body-bg);
+  background: var(--bs-primary);
+}

@@ -5,17 +5,18 @@
 <app-add-product [showModal]="addEditModalOpen" (closeModal)="closeModal()"  [selectedProduct]="selectedProduct" [editMode]="editMode"></app-add-product>
 }
 <h2>Product List</h2>
-<div class="view-toggle-switch">
+@if (isStaff()) {
+<div class="view-toggle-switch d-flex justify-content-end">
     <app-icon icon="list" size="1.5rem"></app-icon>
-<div class="form-check form-switch">
+<div class="form-check form-switch d-flex align-items-center justify-content-center">
     <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault" [(ngModel)]="viewGrid" >
-    <label class="form-check-label" for="switchCheckDefault">Default switch checkbox input</label>
   </div>
   <app-icon icon="grid" size="1.5rem"></app-icon>
 </div>
+}
 @if(viewGrid) {
 <div class="row">
-    <div class="col-3" *ngFor="let product of products">
+    <div class="col-4" *ngFor="let product of products">
         <app-product-card [product]="product"></app-product-card>
     </div>
 </div>

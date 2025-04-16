@@ -43,7 +43,8 @@ export class RegisterComponent {
     role: new FormControl('USER', {
       validators: [Validators.required],
       updateOn: 'blur'//'submit' //| 'submit'
-    })
+    }),
+    alertsEnabled: new FormControl(false )
   });
 
   showModalValue: boolean = false;

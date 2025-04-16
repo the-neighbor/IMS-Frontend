@@ -10,10 +10,11 @@ import { OrderDTO } from '../../../../models/interfaces/orderDTO';
 import { OrdersService } from '../../../../services/orders.service';
 import { SaleDTO } from '../../../../models/interfaces/saleDTO';
 import { SalesService } from '../../../../services/sales.service';
+import { ProductTimeComponent } from '../../../../components/graphs/product-time/product-time.component';
 
 @Component({
   selector: 'app-view-product',
-  imports: [CommonModule],
+  imports: [CommonModule, ProductTimeComponent],
   templateUrl: './view-product.component.html',
   styleUrl: './view-product.component.css'
 })

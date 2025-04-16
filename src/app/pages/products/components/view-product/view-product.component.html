@@ -69,6 +69,13 @@
 </div>
 <div class="row">
     <div class="col-12">
+        @if(product?.sku) {
+        <app-product-time [sku]="product.sku"></app-product-time>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
         <div class="card rounded-5">
             <div class="card-header">
                 <h3 class="card-title">Open Sale Orders</h3>

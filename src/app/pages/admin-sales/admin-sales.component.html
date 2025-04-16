@@ -1,7 +1,7 @@
 
 <app-admin-view-sale [showModal]="showModal" [sale]="selectedSale" [inventoryStocks]="selectedSaleInventory" (closeModal)="showModal=false" ></app-admin-view-sale>
 
-<div class="card rounded-5">
+<div class="card rounded-5 page-card" tabindex="0">
     <div class="card-header">
         <h3 class="card-title">Sales</h3>
     </div>
@@ -9,12 +9,16 @@
         <table class="table table-striped-columns table-hover table-responsive">
             <thead>
                 <tr>
-                    <th>Creation Date</th>
+                    <!-- <th>Creation Date</th>
                     <th>Status</th>
                     <th>Sale ID</th>
                     <th>Customer</th>
                     <th>Products</th>
                     <th>Total Price</th>
+                    <th>Actions</th> -->
+                    @for (field of visibleFields; track $index) {
+                    <th [class]="{'table-marker-primary':sortField==field.name}" (click)="sortBy(field.name)">{{ field.displayName | titlecase }}</th>
+                    }
                     <th>Actions</th>
                 </tr>
             </thead>

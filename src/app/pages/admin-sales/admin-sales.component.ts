@@ -20,6 +20,38 @@ export class AdminSalesComponent {
   selectedSaleInventory:{[key:number]:number} = {} as {[key:number]:number};
   inventoryList:InventoryDTO[] = [] as InventoryDTO[];
   constructor(private sales:SalesService, private inventory:InventoryService) {}
+  sortField: string = 'saleId';
+  sortDirection: string = 'asc';
+
+  sortBy(field: string) {
+    this.sortField = field;
+    let keyField = field as keyof SaleDTO;
+    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    this.salesList.sort((a, b) => {
+      const a1 = a[keyField] || '';
+      const b1 = b[keyField] || '';
+      return this.sortDirection === 'asc' ? (a1 > b1 ? 1 : -1) : (a1 < b1 ? 1 : -1);
+    });
+  }
+  fields: string[] = [
+    'saleId',
+    'totalPrice',
+    'productList',
+    'customerUsername',
+    'saleCreated',
+    'saleUpdated',
+    'saleCompleted',
+    'saleStatus'
+  ];
+  visibleFields = [
+    { name: 'saleCreated', displayName: 'Sale Created' },
+    { name: 'saleStatus', displayName: 'Sale Status' },
+    { name: 'saleId', displayName: 'Sale ID' },
+    { name: 'customerUsername', displayName: 'Customer Username' },
+    { name: 'productList', displayName: 'Product List' },
+    { name: 'totalPrice', displayName: 'Total Price' },
+  ];
+
 
   salesList: any[] = [];
   ngOnInit() {
