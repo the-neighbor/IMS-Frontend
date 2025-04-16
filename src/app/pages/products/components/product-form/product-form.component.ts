@@ -13,6 +13,13 @@ export class ProductFormComponent {
 
   @Input() productForm : FormGroup | undefined;
   @Output() productInfoEntered = new EventEmitter<void>();
+  @Input() categories: string[] = [
+    'Electronics',
+  'Fashion & Apparel',
+  'Home & Living',
+  'Beauty & Wellness',
+  'Toys & Games'
+  ];
 
   onSubmit() {
     this.productInfoEntered.emit();

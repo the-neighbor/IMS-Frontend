@@ -12,10 +12,11 @@ import { BaseChartDirective } from 'ng2-charts';
 import 'chartjs-adapter-date-fns';
 import { ChartTypeRegistry } from 'chart.js';
 import { max } from 'rxjs';
+import { SalesProductsGraphComponent } from "../../../components/graphs/sales-products-graph/sales-products-graph.component";
 
 @Component({
   selector: 'app-admin-dashboard',
-  imports: [BaseChartDirective],
+  imports: [BaseChartDirective, SalesProductsGraphComponent],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css'
 })

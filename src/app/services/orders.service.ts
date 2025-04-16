@@ -77,4 +77,12 @@ export class OrdersService {
     const headers = { 'Authorization': 'Bearer ' + this.auth.getToken() };
     return this.http.post<OrderDTO>(environment.API_URL + environment.ORDERS_PATH + "/mark-complete/" + id, {}, { headers });
   }
+  getTotalOrdersForEachSku() {
+    const headers = { 'Authorization': 'Bearer ' + this.auth.getToken() };
+    return this.http.get<Map<number,number>>(environment.API_URL + environment.ORDERS_PATH + "/totalorders/sku", { headers });
+  }
+  getTotalExpendituresForEachSku() {
+    const headers = { 'Authorization': 'Bearer ' + this.auth.getToken() };
+    return this.http.get<Map<number,number>>(environment.API_URL + environment.ORDERS_PATH + "/totalexpenditures/sku", { headers });
+  }
 }

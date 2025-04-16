@@ -42,7 +42,9 @@ export class AddProductComponent {
     buyPrice: new FormControl(0),
     sellPrice: new FormControl(0),
     supplierId: new FormControl(0),
-    supplierName: new FormControl('')
+    supplierName: new FormControl(''),
+    category: new FormControl(''),
+    imageUrl: new FormControl(''),
   });
 
   selectedSupplier: SupplierDTO | undefined;

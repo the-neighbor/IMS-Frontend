@@ -9,4 +9,5 @@ export interface ProductDTO {
     supplierId?: number;
     supplierName?: string;
     imageUrl?: string;
+    category?: string;
 }
