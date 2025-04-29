@@ -1,6 +1,62 @@
-<div class="card rounded-5 page-card">
-<div class="card-body">
-    <app-sales-products-graph></app-sales-products-graph>
-    <canvas baseChart [data]="chartData" [options]="chartOptions" [type]="chartType" ></canvas>
+
+<div class="row">
+    <div class="col-8">
+        <div class="card rounded-5 page-card">
+            <div class="card-header d-flex justify-content-between">
+                <h3 class="card-title">Sales Products Graph</h3>
+            </div>
+            <div class="card-body">
+                @if(graph1name == 'SalesOrdersTotals') {
+                <app-sales-orders-totals-graph></app-sales-orders-totals-graph>
+                } @else if (graph1name == 'ProductSalesTotals') {
+                <app-sales-products-graph></app-sales-products-graph>
+                }
+            </div>
+            <div class="card-footer">
+                </div>
+                </div>  
+        </div>
+    <div class="col-4">
+        <div class="card rounded-5">
+            <div class="card-header d-flex justify-content-between">
+                <h3 class="card-title">Sales Products</h3>
+            </div>
+            <div class="button-group">
+                @for (graphname of chartsAvailableKeys; track $index) {
+                    <button class="btn rounded-5 btn-primary" (click)="changeGraph1(graphname)">{{chartsAvailable[graphname]}}</button>
+                }
+            </div>
+        </div>
+    </div>
 </div>
+
+<div class="row">
+    <div class="col-4">
+        <div class="card rounded-5">
+            <div class="card-header d-flex justify-content-between">
+                <h3 class="card-title">Sales Products</h3>
+            </div>
+            <div class="button-group">
+                @for (graphname of chartsAvailableKeys; track $index) {
+                    <button class="btn rounded-5 btn-primary" (click)="changeGraph2(graphname)">{{chartsAvailable[graphname]}}</button>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="card rounded-5 page-card">
+            <div class="card-header d-flex justify-content-between">
+                <h3 class="card-title">Sales Products Graph</h3>
+            </div>
+            <div class="card-body">
+                @if(graph2name == 'SalesOrdersTotals') {
+                <app-sales-orders-totals-graph></app-sales-orders-totals-graph>
+                } @else if (graph2name == 'ProductSalesTotals') {
+                <app-sales-products-graph></app-sales-products-graph>
+                }
+            </div>
+            <div class="card-footer">
+                </div>
+        </div>
+    </div>
 </div>

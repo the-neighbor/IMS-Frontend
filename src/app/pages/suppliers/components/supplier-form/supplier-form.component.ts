@@ -15,9 +15,13 @@ import { SupplierDTO } from '../../../../models/interfaces/supplierDTO';
 export class SupplierFormComponent {
 
   @Input() editMode: boolean = false;
+   _supplier: SupplierDTO = {} as SupplierDTO;
   @Input() set supplier(supplier: SupplierDTO) {
     this.supplierForm.patchValue(supplier);
-    console.log(supplier);
+    this._supplier = supplier;
+  }
+  get supplier() {
+    return this._supplier;
   }
   showModalValue: boolean = false;
   @Input() set showModal(value: boolean) {
